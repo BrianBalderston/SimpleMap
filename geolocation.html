@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="css/main.css" rel="stylesheet" type="text/css" media="screen">
+<title>GeoLocation</title>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1vji6nF1l0TJAs0Qwkt3BgOnhmI7t3uY"></script>
+</head>
+
+<body>
+	<!--<div class="spacer"></div>  !tab makes alot of this for u in sublime it leaves out css and js tho.... view, layout, single columns rows....-->
+
+	<h4>Getting Location...</h4>
+	<span class="latitude"></span>
+	<span class="longitude"></span>
+	<script>
+		(function() {
+			var lat = document.querySelector('.latitude'),
+				lng = document.querySelector('.longitude'),
+				heading = document.querySelector('h4');
+			
+			// use the browser's geolocation object to get our position. This might not work in chrome because of HTTPS or secure stuff
+			function getLocation() {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(showPosition)
+				} else {
+					console.log('Couldnt find the location');
+				}
+			}
+			
+			function showPosition(position) {
+				heading.innerHTML = "Got location!";
+				lat.innerHTML = "Latitude: " + position.coords.latitude;
+				lng.innerHTML = "Longitude: " + position.coords.longitude;
+			}
+			
+			getLocation();
+		})();
+
+
+	</script>
+</body>
+</html>
